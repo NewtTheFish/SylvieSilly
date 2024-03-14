@@ -37,7 +37,7 @@ local aurora_def = {
         [1] = "Start with an {C:spectral,T:c_aura}Aura{} card.",
         [2] = "{C:attention}Jokers{} and {C:attention}Playing Cards{}",
         [3] = "are always {C:dark_edition}Special.",
-        [4] = "{C:red}-3{} joker slots, {C:red}-3{} hands."
+        [4] = "{C:red}-1{} joker slot, {C:red}-1{} hand."
     }
 }
 
@@ -46,8 +46,7 @@ local sulfur_def = {
     ["text"] = {
         [1] = "Start with a {C:tarot,T:c_death}Death{} card",
         [2] = "and the {C:attention,T:v_overstock_norm}Overstock{} voucher.",
-        [3] = "{C:attention}Jokers{} appear less often and",
-        [4] = "rarely are {C:dark_edition}Special.",
+        [3] = "{C:attention}Jokers{} appear less often.",
     }
 }
 
@@ -63,7 +62,7 @@ function Card.set_edition(self, edition, immediate, silent)
         end
     end
 
-    if G.GAME.starting_params.auroramodifier and self.ability.set == 'Default' and (edition == nil or not edition.foil) then
+    if G.GAME.starting_params.auroramodifier and self.ability.set == 'Default' and (edition == nil) then
         local rngedition = pseudorandom(pseudoseed('random_edition'))
         if rngedition > 0.5 then self:set_edition({foil = true})
         elseif rngedition > 0.1 then self:set_edition({holo = true})
@@ -82,10 +81,6 @@ function Back.apply_to_run(self)
 
     if self.effect.config.planet_rate then
         G.GAME.planet_rate = self.effect.config.planet_rate
-    end
-
-    if self.effect.config.joker_rate then
-        G.GAME.joker_rate = self.effect.config.joker_rate
     end
 
     if self.effect.config.edition_rate then
@@ -132,9 +127,9 @@ function Back.apply_to_run(self)
 end
 
 local LemonLimeDeck = SMODS.Deck:new("Lemon-Lime Deck", "ss_lemonlime", {lldmodifier = true, discards = -1, hands = -1}, {x = 0, y = 5}, lld_def)
-local AuroraDeck = SMODS.Deck:new("Aurora Deck", "ss_aurora", {auroramodifier = true, consumables = {'c_aura'}, joker_slot = -3, hands = -3}, {x = 2, y = 5}, aurora_def)
-local SulfurDeck = SMODS.Deck:new("Sulfur Deck", "ss_sulfur", {sulfurmodifier = true, consumables = {'c_death'}, edition_rate = 0.1, joker_rate = 4, voucher = 'v_overstock_norm'}, {x = 3, y = 5}, sulfur_def)
-local HallowedDeck = SMODS.Deck:new("Hallowed Deck", "ss_hallowed", {hallowmodifier = true, tarot_rate = 0, planet_rate = 0, playing_card_rate = 10},{x = 1, y = 5}, hallow_def)
+local AuroraDeck = SMODS.Deck:new("Aurora Deck", "ss_aurora", {auroramodifier = true, consumables = {'c_aura'}, joker_slot = -1, hands = -1}, {x = 2, y = 5}, aurora_def)
+local SulfurDeck = SMODS.Deck:new("Sulfur Deck", "ss_sulfur", {consumables = {'c_death'}, joker_rate = 4, voucher = 'v_overstock_norm'}, {x = 3, y = 5}, sulfur_def)
+local HallowedDeck = SMODS.Deck:new("Hallowed Deck", "ss_hallowed", {tarot_rate = 0, planet_rate = 0, playing_card_rate = 10, voucher = 'v_magic_trick'},{x = 1, y = 5}, hallow_def)
 
 LemonLimeDeck:register()
 SulfurDeck:register()
