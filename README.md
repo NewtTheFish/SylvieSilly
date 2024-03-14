@@ -8,12 +8,11 @@
 ### Sulfur Deck
 - Start with a Death card and Overstock
 - Jokers are appear less often (equal chance to Tarots and Planets)
-- Jokers rarely have editions
 
 ### Aurora Deck
 - Start with an Aura card
 - Jokers and Playing cards always have editions
-- -3 joker slots, -3 hands.
+- -1 joker slot, -1 hand.
 
 ### Hallowed Deck
 - Planets and Tarots no longer appear in the shop.
