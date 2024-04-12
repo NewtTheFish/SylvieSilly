@@ -11,10 +11,47 @@
 
 ### Aurora Deck
 - Start with an Aura card
-- Jokers and Playing cards always have editions
+- Playing cards always have editions
+- Start with Hone and Glow Up
 - -1 joker slot, -1 hand.
 
 ### Hallowed Deck
 - Planets and Tarots no longer appear in the shop.
 - Playing Cards now appear in the shop by deafult.
 - (Shouldn't affect the boosters, but I haven't tested much)
+
+## Current Blinds
+
+### The Prospector
+- All Stone, Steel, Gold, and Glass cards are debuffed
+- Mininmum Ante: 2
+
+### The Gambler
+- All Wild, Lucky, Mult, and Bonus cards are debuffed
+- Mininmum Ante: 2
+
+### The Pathway
+- All 6, 7, 8, 9, and 10 cards are debuffed
+- Mininmum Ante: 1
+
+### The Backside
+- All Ace, 2, 3, 4, and 5 cards are debuffed
+- Mininmum Ante: 1
+
+### The Heatwave
+- All even cards are drawn face down
+- Mininmum Ante: 2
+
+### The Frost
+- All odd cards are drawn face down
+- Mininmum Ante: 2
+
+## New Planets
+
+### Europa
+### Io
+### Callisto
+### Ganymede
+### Charon
+### Hydra
+
