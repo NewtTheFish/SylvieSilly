@@ -2,7 +2,7 @@
 
 ### Lime-Lime Deck
 - Start with a modified deck.
-- -1 discard, -1 hand.
+- -1 discard.
 - The 2's in the deck have one of each (vanilla) seal.
 
 ### Sulfur Deck
