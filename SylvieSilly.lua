@@ -210,7 +210,7 @@ local chipboost = 5
 local bonusboost = 10
 local multboost = 2
 local sylvie_moons = {
-    europa = {
+    [1] = {
         name = 'Europa',
         text = {
             "{C:attention}Upgrade{} all",
@@ -255,7 +255,7 @@ local sylvie_moons = {
 			return badges
 		end,
     },
-    io = {
+    [2] = {
         name = 'Io',
         text = {
             "{C:attention}Upgrade{} all",
@@ -300,7 +300,7 @@ local sylvie_moons = {
 			return badges
 		end,
     },
-    callisto = {
+    [3] = {
         name = 'Callisto',
         text = {
             "{C:attention}Upgrade{} all",
@@ -345,7 +345,7 @@ local sylvie_moons = {
 			return badges
 		end,
     },
-    ganymede = {
+    [4] = {
         name = 'Ganymede',
         text = {
             "{C:attention}Upgrade{} all",
@@ -390,7 +390,7 @@ local sylvie_moons = {
 			return badges
 		end,
     },
-    charon = {
+    [5] = {
         name = 'Charon',
         text = {
             "{C:attention}Upgrade{} {C:chips}Bonus Cards{}",
@@ -441,7 +441,7 @@ local sylvie_moons = {
 		end,
     },
 
-    hydra = {
+    [6] = {
         name = 'Hydra',
         text = {
             "{C:attention}Upgrade{} {C:mult}Mult Cards{}",
@@ -507,7 +507,7 @@ end
 function SMODS.INIT.SylvieSilly()
 local mod = SMODS.findModByID("SylvieSilly")
 
-SMODS.Sprite:new("centers", mod.path, "Enhancers.png", 71, 95, "asset_atli"):register()
+SMODS.Sprite:new("sylvie_backs", mod.path, "sylvie_backs.png", 71, 95, "asset_atli"):register()
 SMODS.Sprite:new("sylvie_moons", mod.path, "sylvie_moons.png", 71, 95, "asset_atli"):register()
 SMODS.Sprite:new("sylvie_blinds", mod.path, 'sylvie_blinds.png', 34, 34, 'animation_atli', 21):register()
 
@@ -518,13 +518,13 @@ SMODS.Blind:new('The Backside', 'backside', {name = 'The Backside', text = {'All
 SMODS.Blind:new('The Heatwave', 'heatwave', {name = 'The Heatwave', text = {'All even cards are', 'drawn face down'}}, 5, 2, {}, {}, {x=0, y=4}, {min = 2, max = 10}, HEX('b72041'), true, 'sylvie_blinds'):register()
 SMODS.Blind:new('The Frost', 'frost', {name = 'The Frost', text = {'All odd cards are', 'drawn face down'}}, 5, 2, {}, {}, {x=0, y=5}, {min = 2, max = 10}, HEX('5090b7'), true, 'sylvie_blinds'):register()
 
-SMODS.Deck:new("Lemon-Lime Deck", "ss_lemonlime", {lldmodifier = true, discards = -1}, {x = 0, y = 5}, lld_def):register()
-SMODS.Deck:new("Aurora Deck", "ss_aurora", {vouchers = {'v_hone', 'v_glow_up'},auroramodifier = true, consumables = {'c_aura'}, joker_slot = -1, hands = -1}, {x = 2, y = 5}, aurora_def):register()
-SMODS.Deck:new("Sulfur Deck", "ss_sulfur", {consumables = {'c_death'}, joker_rate = 4, voucher = 'v_overstock_norm'}, {x = 3, y = 5}, sulfur_def):register()
-SMODS.Deck:new("Hallowed Deck", "ss_hallowed", {tarot_rate = 0, planet_rate = 0, playing_card_rate = 10, voucher = 'v_magic_trick'},{x = 1, y = 5}, hallow_def):register()
---SMODS.Deck:new("Deck OS", "ss_deckos", {deckosmodifier = true}, {x = 4, y = 5}, deckos_def)
+SMODS.Deck:new("Lemon-Lime Deck", "ss_lemonlime", {lldmodifier = true, discards = -1, atlas = 'sylvie_backs'}, {x = 0, y = 5}, lld_def):register()
+SMODS.Deck:new("Aurora Deck", "ss_aurora", {vouchers = {'v_hone', 'v_glow_up'},auroramodifier = true, consumables = {'c_aura'}, joker_slot = -1, hands = -1, atlas = 'sylvie_backs'}, {x = 2, y = 5}, aurora_def):register()
+SMODS.Deck:new("Sulfur Deck", "ss_sulfur", {consumables = {'c_death'}, joker_rate = 4, voucher = 'v_overstock_norm', atlas = 'sylvie_backs'}, {x = 3, y = 5}, sulfur_def):register()
+SMODS.Deck:new("Hallowed Deck", "ss_hallowed", {tarot_rate = 0, planet_rate = 0, playing_card_rate = 10, voucher = 'v_magic_trick', atlas = 'sylvie_backs'},{x = 1, y = 5}, hallow_def):register()
+--SMODS.Deck:new("Deck OS", "ss_deckos", {deckosmodifier = true, atlas = 'sylvie_backs'}, {x = 4, y = 5}, deckos_def)
 
-for key,info in pairs(sylvie_moons) do
+for key,info in ipairs(sylvie_moons) do
     local v = sylvie_moons[key]
     SMODS.Planet:new(v.name, v.slug, v.config, v.pos, {name = v.name, text = v.text }, 3, 1.0, v.effect, 1, true, true, "sylvie_moons"):register()
     SMODS.Planets["c_"..v.slug].loc_def = v.loc_def
