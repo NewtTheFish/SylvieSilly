@@ -227,7 +227,26 @@ let blinds = [
 ]
 
 let shop_items = [
-
+  {
+    name: "Stamper",
+    text: [
+      'Increase chance to find',
+      '{C:attention}Playing cards{} with {C:attention}Seals',
+      'in {C:attention}Standard Packs',
+    ],
+    image_url: "img/stamper.png",
+    rarity: "Voucher",
+  },
+  {
+    name: "Seal the Deal",
+    text: [
+      '{C:attention}Playing cards{} from',
+      '{C:attention}Standard Packs{} always',
+      'have {C:attention}Seals',
+    ],
+    image_url: "img/sealdeal.png",
+    rarity: "Voucher",
+  },
 
 ]
 

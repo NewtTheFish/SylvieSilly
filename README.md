@@ -46,12 +46,131 @@
 - All odd cards are drawn face down
 - Mininmum Ante: 2
 
-## New Planets
+## Current Packs
+### Suits Pack
+<details>
+<summary>Suits Pool</summary>
 
-### Europa
-### Io
-### Callisto
-### Ganymede
-### Charon
-### Hydra
+### Tarots/Planets
+The Moon
+The Sun
+The World
+The Star
+The Lovers
 
+Jupiter
+Europa
+Io
+Callisto
+Ganymede
+
+### Jokers
+Greedy Joker
+Lusty Joker
+Wrathful Joker
+Gluttenous Joker
+Droll Joker
+Crafty Joker
+Smeared Joker
+Flower Pot
+Rough Gem
+Bloodstone
+Arrowhead
+Onyx Agate
+The Tribe
+Seeing Double
+Castle
+Ancient Joker
+Blackboard
+
+### Spectrals
+Sigil
+</details>
+
+### Bonus Pack
+<details>
+<summary>Bonus Pool</summary>
+
+### Tarots/Planets
+Magician
+High Priestess
+The Heirophant
+The Lovers
+Chariot
+Justice
+Death
+The Tower
+The Devil
+
+Charon
+Hydra
+Titan
+### Jokers
+None! You get Enhanced playing cards instead.
+
+### Spectrals
+Familiar
+Grim
+Incantation
+Cryptid
+Talisman
+Deja Vu
+</details>
+
+### Fortune Pack
+<details>
+<summary>Fortune Pool</summary>
+
+### Tarots/Planets
+The Fool
+Wheel of Fortune
+The Hermit
+Temperance
+Judgement
+Magician
+Lovers
+
+Euceladus
+### Jokers
+Loyalty Card
+8-Ball
+Misprint
+Space Joker
+Business Card
+Faceless Joker
+Egg
+Cloud 9
+Hallucination
+Golden Joker
+Midas Mask
+Reserved Parking
+Lucky Cat
+Trading Card
+Bloodstone
+Oops! All 6's
+The Idol
+
+### Spectrals
+Immolate
+Aura
+Trance
+Medium
+Bloom
+</details>
+
+## Current Planets
+Europa
+Io
+Callisto
+Ganymede
+Charon
+Hydra
+Titan
+Euceladus
+
+## Current Spectrals
+Bloom
+
+## Current Vouchers
+Stamper
+Seal the Deal!
