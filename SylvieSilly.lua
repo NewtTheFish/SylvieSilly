@@ -1336,6 +1336,12 @@ function Game:start_run(args)
 	return ret
 end
 
+function push_pool(table,pack)
+    for k,v in pairs(table) do
+        pack[#pack+1] = k
+    end
+end
+
 function SMODS.INIT.SylvieSilly()
 
 local fortune_pool = pack_pools['Fortune']['TarotPlanet']
@@ -1344,7 +1350,8 @@ local fortune_pool_joker = pack_pools['Fortune']['Joker']
 
 local bonus_pool = pack_pools['Bonus']['TarotPlanet']
 local bonus_pool_spectral = pack_pools['Bonus']['Spectral']
-local bonus_pool_joker = pack_pools['Bonus']['Joker']
+
+local fortune_jokers,suits_jokers, = nil,nil
 
 if not (SMODS.INIT.CodexArcanum == nil) then
     fortune_pool[#fortune_pool+1] = 'c_alchemy_sulfur'
@@ -1355,6 +1362,11 @@ if not (SMODS.INIT.CodexArcanum == nil) then
     bonus_pool[#bonus_pool+1] = 'c_alchemy_bismuth'
 end
 
+if (SMODS.INIT.MoreFluff ~= nil) then
+    
+
+end
+
 if (TheAutumnCircus ~= nil) then
     if TheAutumnCircus.config.enabled_modules.moreconsumables then
         bonus_pool[#bonus_pool+1] = 'c_Thac_universe'
@@ -1363,6 +1375,15 @@ if (TheAutumnCircus ~= nil) then
 
         fortune_pool[#fortune_pool+1] = 'c_Thac_happy_squirrel'
         fortune_pool[#fortune_pool+1] = 'c_Thac_void'
+    end
+    if TheAutumnCircus.config.enabled_modules.basicoddities and SMODS.INIT.OddityAPI then
+        fortune_pool[#fortune_pool+1] = 'c_Thac_one_jollar'
+        fortune_pool[#fortune_pool+1] = 'c_Thac_two_jollar'
+        fortune_pool[#fortune_pool+1] = 'c_Thac_five_jollar'
+        fortune_pool[#fortune_pool+1] = 'c_Thac_ten_jollar'
+        fortune_pool[#fortune_pool+1] = 'c_Thac_twenty_jollar'
+
+        --bonus_pool[#bonus_pool+1] = 'c_Thac_jimbobread_man'
     end
 end
 
