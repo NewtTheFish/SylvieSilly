@@ -5,6 +5,7 @@
 --- MOD_DESCRIPTION: A few decks, blinds, etc. Have fun!
 --- DISPLAY_NAME: Sylvie Sillies
 --- BADGE_COLOUR: C7387D
+--- PRIORITY: 25
 
 ----------------------------------------------
 ------------MOD CODE -------------------------
@@ -109,6 +110,23 @@ function SMODS.Booster:register()
 end
 
 -- BOOSTER API
+
+local can_use_consumeableref = Card.can_use_consumeable
+function Card:can_use_consumeable(any_state, skip_check)
+
+    -- import from Codex Arcanum!!
+    if G.STATE == G.STATES.TAROT_PACK then
+        if self.ability.name == 'Aqua' or self.ability.name == 'Ignis' or self.ability.name == 'Aero'
+         or self.ability.name == 'Terra' or self.ability.name == 'Quicksilver' or self.ability.name == 'Salt'
+         or self.ability.name == 'Sulfur' or self.ability.name == 'Phosphorus' or self.ability.name == 'Bismuth'
+         or self.ability.name == 'Cobalt' or self.ability.name == 'Arsenic' or self.ability.name == 'Antimony' then
+          self.config.in_booster = true
+          return true
+        end
+      end
+
+    return can_use_consumeableref(self, any_state, skip_check)
+end
 
 local generate_card_uiref = generate_card_ui
 function generate_card_ui(_c, full_UI_table, specific_vars, card_type, badges, hide_desc, main_start, main_end)
@@ -595,6 +613,7 @@ function Card:open()
 
       G.STATE = G.STATES.TAROT_PACK
       G.GAME.pack_size = self.ability.extra
+
       if self.ability.name:find('Suits') then
         G.ARGS.is_suit_pack = true
       elseif self.ability.name:find('Bonus') then
@@ -1318,6 +1337,36 @@ function Game:start_run(args)
 end
 
 function SMODS.INIT.SylvieSilly()
+
+local fortune_pool = pack_pools['Fortune']['TarotPlanet']
+local fortune_pool_spectral = pack_pools['Fortune']['Spectral']
+local fortune_pool_joker = pack_pools['Fortune']['Joker']
+
+local bonus_pool = pack_pools['Bonus']['TarotPlanet']
+local bonus_pool_spectral = pack_pools['Bonus']['Spectral']
+local bonus_pool_joker = pack_pools['Bonus']['Joker']
+
+if not (SMODS.INIT.CodexArcanum == nil) then
+    fortune_pool[#fortune_pool+1] = 'c_alchemy_sulfur'
+    fortune_pool[#fortune_pool+1] = 'c_alchemy_antimony'
+    fortune_pool[#fortune_pool+1] = 'c_alchemy_arsenic'
+
+    bonus_pool[#bonus_pool+1] = 'c_alchemy_cobalt'
+    bonus_pool[#bonus_pool+1] = 'c_alchemy_bismuth'
+end
+
+if (TheAutumnCircus ~= nil) then
+    if TheAutumnCircus.config.enabled_modules.moreconsumables then
+        bonus_pool[#bonus_pool+1] = 'c_Thac_universe'
+        bonus_pool[#bonus_pool+1] = 'c_Thac_artist'
+        bonus_pool[#bonus_pool+1] = 'c_Thac_joker'
+
+        fortune_pool[#fortune_pool+1] = 'c_Thac_happy_squirrel'
+        fortune_pool[#fortune_pool+1] = 'c_Thac_void'
+    end
+end
+
+
 local mod = SMODS.findModByID("SylvieSilly")
 
 SMODS.Sprite:new("sylvie_backs", mod.path, "sylvie_backs.png", 71, 95, "asset_atli"):register()
@@ -1340,14 +1389,14 @@ SMODS.Deck:new("Sulfur Deck", "ss_sulfur", {consumables = {'c_death'}, joker_rat
 SMODS.Deck:new("Hallowed Deck", "ss_hallowed", {tarot_rate = 0, planet_rate = 0, playing_card_rate = 10, voucher = 'v_magic_trick', atlas = 'sylvie_backs'},{x = 1, y = 5}, hallow_def):register()
 --SMODS.Deck:new("Deck OS", "ss_deckos", {deckosmodifier = true, atlas = 'sylvie_backs'}, {x = 4, y = 5}, deckos_def)
 
-SMODS.Booster:new("Suits Pack", "suit_normal_1", {extra = 3, choose = 1}, { x = 0, y = 0 }, 8, true, 1, "Arcana", "sylvie_boosters"):register()
-SMODS.Booster:new("Suits Pack", "suit_normal_2", {extra = 3, choose = 1}, { x = 1, y = 0 }, 8, true, 1, "Arcana", "sylvie_boosters"):register()
-SMODS.Booster:new("Jumbo Suits Pack", "suit_jumbo", {extra = 5, choose = 1}, { x = 2, y = 0 }, 10, true, 0.75, "Arcana", "sylvie_boosters"):register()
-SMODS.Booster:new("Mega Suits Pack", "suit_mega", {extra = 5, choose = 2}, { x = 3, y = 0 }, 12, true, 0.25, "Arcana", "sylvie_boosters"):register()
-SMODS.Booster:new("Bonus Pack", "bonus_normal", {extra = 3, choose = 1}, { x = 0, y = 1 }, 8, true, 1, "Arcana", "sylvie_boosters"):register()
-SMODS.Booster:new("Jumbo Bonus Pack", "bonus_jumbo", {extra = 5, choose = 1}, { x = 1, y = 1 }, 10, true, 0.75, "Arcana", "sylvie_boosters"):register()
-SMODS.Booster:new("Fortune Pack", "fortune_normal", {extra = 3, choose = 1}, { x = 2, y = 1 }, 8, true, 1, "Arcana", "sylvie_boosters"):register()
-SMODS.Booster:new("Jumbo Fortune Pack", "fortune_jumbo", {extra = 5, choose = 1}, { x = 3, y = 1 }, 10, true, 0.75, "Arcana", "sylvie_boosters"):register()
+SMODS.Booster:new("Suits Pack", "suit_normal_1", {extra = 3, choose = 1}, { x = 0, y = 0 }, 5, true, 1, "Arcana", "sylvie_boosters"):register()
+SMODS.Booster:new("Suits Pack", "suit_normal_2", {extra = 3, choose = 1}, { x = 1, y = 0 }, 5, true, 1, "Arcana", "sylvie_boosters"):register()
+SMODS.Booster:new("Jumbo Suits Pack", "suit_jumbo", {extra = 5, choose = 1}, { x = 2, y = 0 }, 7, true, 0.75, "Arcana", "sylvie_boosters"):register()
+SMODS.Booster:new("Mega Suits Pack", "suit_mega", {extra = 5, choose = 2}, { x = 3, y = 0 }, 9, true, 0.25, "Arcana", "sylvie_boosters"):register()
+SMODS.Booster:new("Bonus Pack", "bonus_normal", {extra = 3, choose = 1}, { x = 0, y = 1 }, 5, true, 1, "Arcana", "sylvie_boosters"):register()
+SMODS.Booster:new("Jumbo Bonus Pack", "bonus_jumbo", {extra = 5, choose = 1}, { x = 1, y = 1 }, 7, true, 0.75, "Arcana", "sylvie_boosters"):register()
+SMODS.Booster:new("Fortune Pack", "fortune_normal", {extra = 3, choose = 1}, { x = 2, y = 1 }, 5, true, 1, "Arcana", "sylvie_boosters"):register()
+SMODS.Booster:new("Jumbo Fortune Pack", "fortune_jumbo", {extra = 5, choose = 1}, { x = 3, y = 1 }, 7, true, 0.75, "Arcana", "sylvie_boosters"):register()
 
 G.localization.descriptions["Other"]["p_suits_normal"] = {
     name = "Suits Pack",
